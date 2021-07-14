@@ -19,8 +19,15 @@ namespace HLock
 
         private void addPasswordBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tagTxt.Text))
+            if (string.IsNullOrWhiteSpace(passwordTxt.Text)) {
+                MessageBox.Show("Password is not valid.");
+                return;
+                    }
+            else if (string.IsNullOrWhiteSpace(tagTxt.Text))
+            {
                 MessageBox.Show("Tag is not valid.");
+                return;
+            }
 
             PasswordHandler.AddPassword(tagTxt.Text, passwordTxt.Text);
 

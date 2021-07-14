@@ -41,11 +41,6 @@ namespace HLock
             }
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            PasswordHandler.Save();
-        }
-
         private void dataLst_DoubleClick(object sender, EventArgs e)
         {
             if (dataLst.SelectedItems.Count < 0)

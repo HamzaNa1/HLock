@@ -79,11 +79,13 @@ namespace HLock
         public static void AddPassword(string tag, string password)
         {
             Passwords.Add(tag, password);
+            Save();
         }
 
         public static void RemovePassword(string tag)
         {
             Passwords.Remove(tag);
+            Save();
         }
     }
 }
