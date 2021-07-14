@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HLock
@@ -22,6 +15,16 @@ namespace HLock
             var password = PasswordGenerator.Generate((int)amountValue.Value, uppercaseChk.Checked, numbersChk.Checked, specialCharactersChk.Checked);
 
             passwordTxt.Text = password;
+        }
+
+        private void addPasswordBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tagTxt.Text))
+                MessageBox.Show("Tag is not valid.");
+
+            PasswordHandler.AddPassword(tagTxt.Text, passwordTxt.Text);
+
+            this.Close();
         }
     }
 }

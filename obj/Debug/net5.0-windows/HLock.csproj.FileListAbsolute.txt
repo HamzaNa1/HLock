@@ -16,3 +16,5 @@ C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\HLock.dll
 C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\ref\HLock.dll
 C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\HLock.pdb
 C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\HLock.genruntimeconfig.cache
+C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\HLock.LoginForm.resources
+C:\Users\hamza\source\repos\HLock\HLock\obj\Debug\net5.0-windows\HLock.MainForm.resources

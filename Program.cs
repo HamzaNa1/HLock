@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HLock
@@ -17,7 +14,13 @@ namespace HLock
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GeneratorForm());
+
+            var loginForm = new LoginForm();
+
+            Application.Run(loginForm);
+
+            if (loginForm.LoginSucceed)
+                Application.Run(new MainForm());
         }
     }
 }

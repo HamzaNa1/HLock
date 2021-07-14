@@ -35,6 +35,9 @@ namespace HLock
             this.amountValue = new System.Windows.Forms.NumericUpDown();
             this.GenerateBtn = new System.Windows.Forms.Button();
             this.passwordTxt = new System.Windows.Forms.TextBox();
+            this.addPasswordBtn = new System.Windows.Forms.Button();
+            this.tagTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.amountValue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,17 +111,49 @@ namespace HLock
             this.passwordTxt.Size = new System.Drawing.Size(320, 27);
             this.passwordTxt.TabIndex = 5;
             // 
+            // addPasswordBtn
+            // 
+            this.addPasswordBtn.Location = new System.Drawing.Point(13, 184);
+            this.addPasswordBtn.Name = "addPasswordBtn";
+            this.addPasswordBtn.Size = new System.Drawing.Size(320, 29);
+            this.addPasswordBtn.TabIndex = 6;
+            this.addPasswordBtn.Text = "Add New Password";
+            this.addPasswordBtn.UseVisualStyleBackColor = true;
+            this.addPasswordBtn.Click += new System.EventHandler(this.addPasswordBtn_Click);
+            // 
+            // tagTxt
+            // 
+            this.tagTxt.Location = new System.Drawing.Point(116, 145);
+            this.tagTxt.Name = "tagTxt";
+            this.tagTxt.Size = new System.Drawing.Size(217, 27);
+            this.tagTxt.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 148);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Password Tag:";
+            // 
             // GeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 143);
+            this.ClientSize = new System.Drawing.Size(345, 225);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tagTxt);
+            this.Controls.Add(this.addPasswordBtn);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.GenerateBtn);
             this.Controls.Add(this.amountValue);
             this.Controls.Add(this.specialCharactersChk);
             this.Controls.Add(this.numbersChk);
             this.Controls.Add(this.uppercaseChk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GeneratorForm";
             this.Text = "Generator";
             ((System.ComponentModel.ISupportInitialize)(this.amountValue)).EndInit();
@@ -135,6 +170,9 @@ namespace HLock
         private System.Windows.Forms.NumericUpDown amountValue;
         private System.Windows.Forms.Button GenerateBtn;
         private System.Windows.Forms.TextBox passwordTxt;
+        private System.Windows.Forms.Button addPasswordBtn;
+        private System.Windows.Forms.TextBox tagTxt;
+        private System.Windows.Forms.Label label1;
     }
 }
 
