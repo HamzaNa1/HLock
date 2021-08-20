@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HLock.Cipher;
 
-namespace HLock
+namespace HLock.Password
 {
     public static class PasswordHandler
     {
         private static readonly string Path = "data.txt";
 
-        private static bool forceNoSave = false;
+        private static bool _forceNoSave;
 
-        public static string MasterPassword { get; private set; }
+        private static string MasterPassword { get; set; }
 
-        public static readonly Dictionary<string, string> Passwords = new Dictionary<string, string>();
+        public static readonly Dictionary<string, string> Passwords = new();
 
         public static void Initialize(string masterPassword)
         {
@@ -23,7 +24,7 @@ namespace HLock
             Load();
         }
 
-        public static void Load()
+        private static void Load()
         {
             if (!File.Exists(Path))
             {
@@ -34,9 +35,9 @@ namespace HLock
 
             var lines = File.ReadAllLines(Path);
 
-            for(int i = 0; i < lines.Length; i++)
+            foreach (var line in lines)
             {
-                var data = lines[i].Split(':');
+                var data = line.Split(':');
 
                 if (data.Length != 2)
                     continue;
@@ -51,20 +52,20 @@ namespace HLock
                 catch (Exception e)
                 {
                     MessageBox.Show("Password is wrong.");
-                    forceNoSave = true;
+                    _forceNoSave = true;
                     Application.Exit();
                 }
             }
         }
 
-        public static void Save()
+        private static void Save()
         {
-            if (forceNoSave)
+            if (_forceNoSave)
                 return;
 
             var lines = new string[Passwords.Count];
 
-            for(int i = 0; i < lines.Length; i++)
+            for(var i = 0; i < lines.Length; i++)
             {
                 var tag = Passwords.Keys.ElementAt(i);
                 var cipheredTag = StringCipher.Encrypt(tag, MasterPassword);

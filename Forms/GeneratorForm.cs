@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using HLock.Password;
 
-namespace HLock
+namespace HLock.Forms
 {
     public partial class GeneratorForm : Form
     {
@@ -22,8 +23,9 @@ namespace HLock
             if (string.IsNullOrWhiteSpace(passwordTxt.Text)) {
                 MessageBox.Show("Password is not valid.");
                 return;
-                    }
-            else if (string.IsNullOrWhiteSpace(tagTxt.Text))
+            }
+
+            if (string.IsNullOrWhiteSpace(tagTxt.Text))
             {
                 MessageBox.Show("Tag is not valid.");
                 return;
@@ -31,7 +33,7 @@ namespace HLock
 
             PasswordHandler.AddPassword(tagTxt.Text, passwordTxt.Text);
 
-            this.Close();
+            Close();
         }
     }
 }

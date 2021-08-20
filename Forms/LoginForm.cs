@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using HLock.Password;
 
-namespace HLock
+namespace HLock.Forms
 {
     public partial class LoginForm : Form
     {

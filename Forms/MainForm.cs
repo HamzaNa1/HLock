@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using HLock.Password;
 using static System.Windows.Forms.ListViewItem;
 
-namespace HLock
+namespace HLock.Forms
 {
     public partial class MainForm : Form
     {
@@ -17,7 +18,7 @@ namespace HLock
 
         private void newPasswordBtn_Click(object sender, EventArgs e)
         {
-            if (generatorForm != null && !generatorForm.IsDisposed)
+            if (generatorForm is {IsDisposed: false})
                 return;
 
             generatorForm = new GeneratorForm();
@@ -29,13 +30,15 @@ namespace HLock
         {
             dataLst.Items.Clear();
 
-            foreach(string tag in PasswordHandler.Passwords.Keys)
+            foreach(var tag in PasswordHandler.Passwords.Keys)
             {
                 var password = PasswordHandler.Passwords[tag];
 
                 var tagItem = new ListViewItem(tag);
-                var passwordItem = new ListViewSubItem(tagItem, new string('*', password.Length));
-                passwordItem.Tag = password;
+                var passwordItem = new ListViewSubItem(tagItem, new string('*', password.Length))
+                {
+                    Tag = password
+                };
 
                 dataLst.Items.Add(tagItem).SubItems.Add(passwordItem);
             }
@@ -48,36 +51,35 @@ namespace HLock
 
             var clicked = dataLst.SelectedItems[0];
 
-            if(clicked != null)
-            {
-                var tag = clicked.Text;
+            if (clicked == null)
+                return;
+            
+            var tag = clicked.Text;
 
-                var result = MessageBox.Show($"Are you sure you want to remove {tag}.", "Warning", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show($"Are you sure you want to remove {tag}.", "Warning", MessageBoxButtons.YesNo);
 
-                if(result == DialogResult.Yes)
-                {
-                    PasswordHandler.RemovePassword(tag);
-                    LoadData();
-                }
-            }
+            if (result != DialogResult.Yes)
+                return;
+            
+            PasswordHandler.RemovePassword(tag);
+            LoadData();
         }
 
         private void dataLst_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Modifiers == Keys.Control && e.KeyCode == Keys.C)
-            {
-                if (dataLst.SelectedItems.Count < 0)
-                    return;
+            if (e.Modifiers != Keys.Control || e.KeyCode != Keys.C)
+                return;
+            
+            if (dataLst.SelectedItems.Count < 0)
+                return;
 
-                var clicked = dataLst.SelectedItems[0];
+            var clicked = dataLst.SelectedItems[0];
 
-                if (clicked != null)
-                {
-                    var tag = clicked.Text;
-
-                    Clipboard.SetText(PasswordHandler.Passwords[tag]);
-                }
-            }
+            if (clicked == null) 
+                return;
+            
+            var tag = clicked.Text;
+            Clipboard.SetText(PasswordHandler.Passwords[tag]);
         }
     }
 }

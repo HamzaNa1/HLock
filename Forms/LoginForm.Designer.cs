@@ -1,5 +1,5 @@
 ﻿
-namespace HLock
+namespace HLock.Forms
 {
     partial class LoginForm
     {
